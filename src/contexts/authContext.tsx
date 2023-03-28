@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { createContext, ReactNode, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 
 import { UserProps } from '../types/User';
@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLoading } from './loading';
+import { useLoading } from '../hooks/useLoading';
 
 interface AuthContextData {
   signIn: (email: string, password: string) => Promise<void>;
@@ -112,10 +112,4 @@ export function AuthProvider({ children }: AuthProviderProps) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-
-  return context;
 }

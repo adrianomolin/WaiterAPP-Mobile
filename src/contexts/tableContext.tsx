@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 interface TableContextProps {
   selectedTable: string,
@@ -36,10 +36,4 @@ export function TableProvider({ children }: TableProviderProps) {
       {children}
     </TableContext.Provider>
   );
-}
-
-export function useTable() {
-  const context = useContext(TableContext);
-
-  return context;
 }

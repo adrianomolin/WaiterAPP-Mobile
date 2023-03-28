@@ -1,7 +1,6 @@
 import {
   createContext,
   ReactNode,
-  useContext,
   useState
 } from 'react';
 
@@ -32,10 +31,4 @@ export function LoadingProvider({ children }: AuthProviderProps) {
       {children}
     </LoadingContext.Provider>
   );
-}
-
-export function useLoading() {
-  const context = useContext(LoadingContext);
-
-  return context;
 }
