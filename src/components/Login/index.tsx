@@ -71,7 +71,7 @@ export function Login() {
                         </ShowPassIcon>
                       </PassForm>
 
-                      <IncorrectPassword isCorrect={isCorrect}>
+                      <IncorrectPassword>
                         <InfoIcon />
                         <Text style={{ marginLeft: 8 }} color="#D73035" size={14}> Senha incorreta. Tente novamente</Text>
                       </IncorrectPassword>
