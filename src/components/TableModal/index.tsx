@@ -1,4 +1,4 @@
-import { Modal, TouchableOpacity, Platform } from 'react-native';
+import { Modal, TouchableOpacity } from 'react-native';
 
 import { Text } from '../Text';
 
@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 import { isAndroid } from '../../utils/isAndroid';
 
-import { useTable } from '../../hooks/table';
+import { useTable } from '../../hooks/useTable';
 
 export function TableModal() {
   const [table, setTable] = useState('');

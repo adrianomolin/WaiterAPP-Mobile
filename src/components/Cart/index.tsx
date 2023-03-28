@@ -20,8 +20,8 @@ import { OrderConfirmedModal } from '../OrderConfirmedModal';
 import { useState } from 'react';
 import { api } from '../../utils/api';
 
-import { useCart } from '../../hooks/cart';
-import { useTable } from '../../hooks/table';
+import { useCart } from '../../hooks/useCart';
+import { useTable } from '../../hooks/useTable';
 
 export function Cart() {
   const [isLoading, setIsLoading] = useState(false);

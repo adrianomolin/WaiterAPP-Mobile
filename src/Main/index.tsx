@@ -9,9 +9,9 @@ import { Cart } from '../components/Cart';
 import { Login } from '../components/Login';
 import { LoadingScreen } from '../components/LoadingScreen';
 
-import { useAuth } from '../hooks/auth';
-import { useLoading } from '../hooks/loading';
-import { useTable } from '../hooks/table';
+import { useAuth } from '../hooks/useAuth';
+import { useLoading } from '../hooks/useLoading';
+import { useTable } from '../hooks/useTable';
 
 import Routes from '../Routes';
 import { Home } from '../components/Home';

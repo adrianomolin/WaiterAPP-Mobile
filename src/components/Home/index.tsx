@@ -16,9 +16,9 @@ import { Text } from '../Text';
 import { Category } from '../../types/Category';
 import { CenteredContainer } from '../../Main/styles';
 import { api } from '../../utils/api';
-import { useLoading } from '../../hooks/loading';
-import { useTable } from '../../hooks/table';
-import { useCart } from '../../hooks/cart';
+import { useLoading } from '../../hooks/useLoading';
+import { useTable } from '../../hooks/useTable';
+import { useCart } from '../../hooks/useCart';
 
 export function Home() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);

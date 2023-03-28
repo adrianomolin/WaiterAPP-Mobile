@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '../Button';
 import { ActivityIndicator } from 'react-native';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/useAuth';
 import { CenteredContainer } from '../../Main/styles';
 import { EyeIcon } from '../Icons/EyeIcon';
 import { EyeIconHidden } from '../Icons/EyeIconHidden';
@@ -19,7 +19,7 @@ export function Login() {
   const [authMail, setAuthMail] = useState('');
   const [showPass, setShowPass] = useState(false);
 
-  const { signIn, isLogging, isCorrect } = useAuth();
+  const { signIn, isLogging } = useAuth();
 
   function handleAuthentication() {
     signIn(authMail, authPass);
@@ -59,7 +59,6 @@ export function Login() {
                           secureTextEntry={!showPass}
                           returnKeyType='go'
                           autoCorrect={false}
-                          isCorrect={isCorrect}
                         />
                         <ShowPassIcon onPress={handleShowPass}>
                           {
