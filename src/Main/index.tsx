@@ -21,35 +21,36 @@ export function Main() {
   const { isLoading } = useLoading();
   const { selectedTable } = useTable();
 
+  if (!user) {
+    return <Login />;
+  }
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (selectedTable) {
+    return (
+      <>
+        <Container>
+          <Home />
+        </Container>
+        <FooterContainer>
+          <Footer>
+            <Cart />
+          </Footer>
+        </FooterContainer>
+      </>
+    );
+  }
+
   return (
     <>
-      {
-        !user ? <Login />
-          : isLoading ? <LoadingScreen />
-            : (
-              <>
-                {
-                  selectedTable ? (
-                    <>
-                      <Container>
-                        <Home />
-                      </Container>
-                      <FooterContainer>
-                        <Footer>
-                          <Cart />
-                        </Footer>
-                      </FooterContainer>
-                    </>
-                  ) : (
-                    <Container>
-                      <Routes />
-                    </Container>
-                  )
-                }
-                <TableModal />
-              </>
-            )
-      }
+      <Container>
+        <Routes />
+      </Container>
+
+      <TableModal />
     </>
   );
 }
