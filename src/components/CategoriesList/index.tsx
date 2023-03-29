@@ -16,7 +16,9 @@ export function CategoriesList({ categories, onSelectCategory }: CategoriesListP
 
   function handleSelectCategory(categoryId: string) {
     if (categoryId === selectedCategoryId) {
-      return null;
+      setSelectedCategoryId('');
+      onSelectCategory('');
+      return;
     }
 
     onSelectCategory(categoryId);
