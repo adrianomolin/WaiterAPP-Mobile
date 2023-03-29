@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react';
-import { ItemQuantity, OrderHeader, OrderItem, OrderItems, OrdersDoneContainer, OrdersInProgressContainer, OrderStatus, StatusBall } from './styles';
+import { FlatList } from 'react-native';
+import { formatDate } from '../../utils/formatDate';
+import { api } from '../../utils/api';
 
 import { Order } from '../../types/Order';
 
+import {
+  ItemQuantity,
+  OrderHeader,
+  OrderItem,
+  OrderItems,
+  OrdersDoneContainer,
+  OrdersInProgressContainer,
+  OrderStatus,
+  StatusBall
+} from './styles';
+
 import { Header } from '../Header';
 import { Text } from '../Text';
-import { api } from '../../utils/api';
-import { FlatList } from 'react-native';
-import { formatDate } from '../../utils/formatDate';
 
 export function Orders() {
-  const [isLoading, setIsLoading] = useState(true);
   const [orderItems, setOrderItems] = useState<Order[]>([]);
   const [oldOrderItems, setOldOrderItems] = useState<Order[]>([]);
 
@@ -21,7 +30,6 @@ export function Orders() {
     ]).then(([ordersResponse, oldOrdersResponse]) => {
       setOrderItems(ordersResponse.data);
       setOldOrderItems(oldOrdersResponse.data);
-      setIsLoading(false);
     });
   },[]);
 
@@ -84,7 +92,11 @@ export function Orders() {
             <OrderItem>
               <OrderHeader>
                 <Text color="#000" size={14}>Mesa {order.table}</Text>
-                <OrderStatus style={{backgroundColor: 'rgba(102, 102, 102, 0.05)'}}>
+                <OrderStatus
+                  style={{
+                    backgroundColor: 'rgba(102, 102, 102, 0.05)'
+                  }}
+                >
                   <StatusBall style={{
                     backgroundColor: '#666666',
                     borderColor: 'rgba(102, 102, 102, 0.1)',
