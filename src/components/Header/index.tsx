@@ -12,11 +12,7 @@ interface HeaderProps {
 export function Header({ selectedTable, onCancelOrder, children }: HeaderProps) {
   return (
     <Container>
-      {!selectedTable && (
-        <>
-          {children}
-        </>
-      )}
+      {!selectedTable && children}
 
       {selectedTable && (
         <Content>

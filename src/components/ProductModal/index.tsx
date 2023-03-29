@@ -66,14 +66,14 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
 
             <FlatList
               data={product.ingredients}
-              keyExtractor={ingredient => ingredient._id}
+              keyExtractor={({ ingredient }) => ingredient._id}
               showsVerticalScrollIndicator={false}
               style={{ marginTop: 16 }}
-              renderItem={({ item: ingredient }) => (
+              renderItem={({ item }) => (
                 <Ingredient>
-                  <Text>{ingredient.icon}</Text>
+                  <Text>{item.ingredient.icon}</Text>
                   <Text size={14} color="#666" style={{ marginLeft: 20 }}>
-                    {ingredient.name}
+                    {item.ingredient.name}
                   </Text>
                 </Ingredient>
               )}
