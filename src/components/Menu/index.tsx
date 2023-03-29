@@ -1,4 +1,5 @@
 import { FlatList } from 'react-native';
+import { API_URL } from '@env';
 
 import { Text } from '../Text';
 
@@ -48,7 +49,7 @@ export function Menu({ onAddToCart, products }: MenuProps) {
           <ProductContainer onPress={() => handleOpenModal(product)}>
             <ProductImage
               source={{
-                uri: `http://192.168.137.171:3001/uploads/${product.imagePath}`
+                uri: `${API_URL}/uploads/${product.imagePath}`
               }}
             />
 

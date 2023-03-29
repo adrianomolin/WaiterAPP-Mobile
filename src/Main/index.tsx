@@ -28,22 +28,24 @@ export function Main() {
           : isLoading ? <LoadingScreen />
             : (
               <>
-                {selectedTable ? (
-                  <>
+                {
+                  selectedTable ? (
+                    <>
+                      <Container>
+                        <Home />
+                      </Container>
+                      <FooterContainer>
+                        <Footer>
+                          <Cart />
+                        </Footer>
+                      </FooterContainer>
+                    </>
+                  ) : (
                     <Container>
-                      <Home />
+                      <Routes />
                     </Container>
-                    <FooterContainer>
-                      <Footer>
-                        <Cart />
-                      </Footer>
-                    </FooterContainer>
-                  </>
-                ) : (
-                  <Container>
-                    <Routes />
-                  </Container>
-                )}
+                  )
+                }
                 <TableModal />
               </>
             )

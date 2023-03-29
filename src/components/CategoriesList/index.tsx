@@ -6,19 +6,21 @@ import { Text } from '../Text';
 
 import { CategoryContainer, Icon } from './styles';
 
-interface CategoriesProps {
+interface CategoriesListProps {
   categories: Category[];
   onSelectCategory: (categoryId: string) => Promise<void>;
 }
 
-export function Categories({ categories, onSelectCategory }: CategoriesProps) {
-  const [selectedCategory, setSelectedCategory] = useState('');
+export function CategoriesList({ categories, onSelectCategory }: CategoriesListProps) {
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
 
   function handleSelectCategory(categoryId: string) {
-    const category = selectedCategory === categoryId ? '' : categoryId;
+    if (categoryId === selectedCategoryId) {
+      return null;
+    }
 
-    onSelectCategory(category);
-    setSelectedCategory(category);
+    onSelectCategory(categoryId);
+    setSelectedCategoryId(categoryId);
   }
 
   return (
@@ -29,7 +31,7 @@ export function Categories({ categories, onSelectCategory }: CategoriesProps) {
       contentContainerStyle={{ paddingRight: 24 }}
       keyExtractor={category => category._id}
       renderItem={({ item: category }) => {
-        const isSelected = category._id === selectedCategory;
+        const isSelected = category._id === selectedCategoryId;
         return (
           (
             <CategoryContainer onPress={() => handleSelectCategory(category._id)}>

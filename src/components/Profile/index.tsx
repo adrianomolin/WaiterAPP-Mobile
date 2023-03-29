@@ -3,7 +3,7 @@ import { Header } from '../Header';
 import { Text } from '../Text';
 import { FormInput, FormArea, Input, ProfileHeader } from './styles';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/useAuth';
 import { useState } from 'react';
 import { LogoutIcon } from '../Icons/LogoutIcon';
 import { TouchableOpacity } from 'react-native-gesture-handler';

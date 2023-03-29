@@ -1,4 +1,5 @@
 import { FlatList, TouchableOpacity } from 'react-native';
+import { API_URL } from '@env';
 
 import {
   Actions,
@@ -73,7 +74,7 @@ export function Cart() {
               <ProductContainer>
                 <Image
                   source={{
-                    uri: `http://192.168.137.171:3001/uploads/${cartItem.product.imagePath}`
+                    uri: `${API_URL}/uploads/${cartItem.product.imagePath}`
                   }}
                 />
 

@@ -3,11 +3,9 @@ import { Alert } from 'react-native';
 
 import { UserProps } from '../types/User';
 
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLoading } from '../hooks/useLoading';
+import { api } from '../utils/api';
 
 interface AuthContextData {
   signIn: (email: string, password: string) => Promise<void>;
@@ -36,45 +34,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return Alert.alert('login', 'Informe o e-mail e a senha');
     }
 
+    const { data } = await api.post('auth', { email, password });
+
     setIsLogging(true);
 
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(acc => {
-        const { email } = acc.user;
-        firestore()
-          .collection('users')
-          .doc(acc.user.uid)
-          .get()
-          .then(async profile => {
-            const { name, role } = profile.data() as UserProps;
-            if(profile.exists) {
-              const userData = {
-                id: acc.user.uid,
-                name,
-                email: email || '',
-                role
-              };
+    await AsyncStorage.setItem('user', JSON.stringify(data.user));
+    await AsyncStorage.setItem('token', JSON.stringify(data.token));
 
-              await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(userData));
-              setUser(userData);
-              handleLoading(true);
-              setIsLogging(false);
-              setIsCorrect(true);
-            }
-          })
-          .catch(() => Alert.alert('Login', 'Não foi possível buscar os dados de perfil do usuário.'));
-      })
-      .catch(err => {
-        const { code } = err;
+    api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
-        setIsLogging(false);
-        if(code === 'auth/wrong-password') {
-          setIsCorrect(false);
-        } else {
-          return Alert.alert('Login', 'Não foi possível realizar o login.');
-        }
-      });
+    setUser(data.user);
   }
 
   async function loadUserStorageData() {
@@ -92,7 +61,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function signOut() {
-    await auth().signOut();
     await AsyncStorage.removeItem(USER_COLLECTION);
 
     setUser(null);

@@ -7,7 +7,7 @@ import {
 } from './styles';
 
 import { Header } from '../Header';
-import { Categories } from '../Categories';
+import { CategoriesList } from '../CategoriesList';
 import { Menu } from '../Menu';
 import { Product } from '../../types/Product';
 
@@ -82,7 +82,7 @@ export function Home() {
       {!isLoading ? (
         <>
           <CategoriesContainer>
-            <Categories
+            <CategoriesList
               categories={categories}
               onSelectCategory={handleSelectCategory}
             />
